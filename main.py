@@ -13,8 +13,8 @@ class TutorialApp(App):
         a = WebScr("https://rate.bot.com.tw/xrt?Lang=en-US")
         df = a.get_data_frame()
         cashbuy = df.query('DOLLAR.str.contains("USD")').CASH_BUY.values
-        if cashbuy >= target_rate:
-            value = str(cashbuy)
+        # if cashbuy >= target_rate:
+        #    value = str(cashbuy)
         mylayout = BoxLayout(orientation="vertical")
         mylabel = Label(text=value)
         mybutton = Button(text="Click me!")
