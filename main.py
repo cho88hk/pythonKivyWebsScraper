@@ -7,11 +7,14 @@ from kivy.uix.button import Button
 
 class TutorialApp(App):
     def build(self):
-
-        a = WebScr("https://rate.bot.com.tw/xrt?Lang=zh-TW")
-        value = a.getvalue()
-        if not value:
-            value = "NO VALUE"
+        cashbuy = 0.000000
+        target_rate = 29.75
+        value = ""
+        a = WebScr("https://rate.bot.com.tw/xrt?Lang=en-US")
+        df = a.get_data_frame()
+        cashbuy = df.query('DOLLAR.str.contains("USD")').CASH_BUY.values
+        if cashbuy >= target_rate:
+            value = str(cashbuy)
         mylayout = BoxLayout(orientation="vertical")
         mylabel = Label(text=value)
         mybutton = Button(text="Click me!")
